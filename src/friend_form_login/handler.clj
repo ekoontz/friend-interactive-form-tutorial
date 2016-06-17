@@ -93,7 +93,6 @@
 
 (def google-auth-config {:client-config client-config
                          :uri-config uri-config
-                         :login-url "/the-google-login"
                          :credential-fn credential-fn})
 
 (def app
