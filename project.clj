@@ -7,7 +7,7 @@
                  [environ "1.0.0"]
                  [clj-http "2.2.0"]
                  [http-kit "2.1.16"]
-                 [friend-oauth2 "0.1.3"];; :exclusions [com.fasterxml.jackson.dataformat/jackson-dataformat-smile ring/ring-core clj-http]]
+                 [friend-oauth2 "0.1.3"]
                  [org.clojure/data.json "0.2.5"] 
                  [org.clojure/tools.logging "0.2.6"]
                  [ring/ring-core "1.3.2"]]

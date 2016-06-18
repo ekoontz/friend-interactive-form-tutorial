@@ -34,30 +34,24 @@
   (GET "/" request (str "<h1>Hello World</h1>"
                         (if (not (empty? (authentications request)))
                           (display-authentications request))
-
+                        "<p>"
                         (if (not (empty? (authentications request)))
-                          "<p><a href='/authenticated-only'>For authenticated people only</a>")
-
-                        (if (not (empty? (authentications request)))
-                          " | <a href='/admin'>For admins only</a>")
-                        
-                        (if (empty? (authentications request))
-                          " | <a href='/login/form'>Login</a> ")
-                        
-                        (if (not (empty? (authentications request)))
-                          " | <a href='/logout'>Logout</a>")
-                        ))
+                          (string/join " | "
+                                       ["<a href='/authenticated-only'>For authenticated people only</a>"
+                                        "<a href='/admin'>For admins only</a>"
+                                        "<a href='/logout'>Logout</a>"])
+                          " <a href='/login/form'>Login</a> ")))
 
   (GET "/authenticated-only" request
        (friend/authorize #{::user}
-                         (str "<h1>Welcome</h1>"
+                         (str "<h1>For authenticated users</h1>"
                               (display-authentications request)
                               "<p>This page can only be seen by authenticated users.</p>"
                               "<a href='/'>Home</a>")))
 
   (GET "/admin" request
        (friend/authorize #{::admin}
-                         (str "<h1>Welcome</h1>"
+                         (str "<h1>For administrators</h1>"
                               (display-authentications request)
                               "<p>This page can only be seen by administrators.</p>"
                               "<a href='/'>Home</a>")))
