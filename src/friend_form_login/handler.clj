@@ -4,6 +4,7 @@
             [compojure.route :as route]
             [clojure.data.json :as json]
             [friend-form-login.lib
+             :as lib
              :refer [authentications client-config
                      google-auth-config display-authentications
                      token2username users]]
@@ -29,14 +30,14 @@
                           " <a href='/login/form'>Login</a> ")))
 
   (GET "/authenticated-only" request
-       (friend/authorize #{::user}
+       (friend/authorize #{::lib/user}
                          (str "<h1>For authenticated users</h1>"
                               (display-authentications request)
                               "<p>This page can only be seen by authenticated users.</p>"
                               "<a href='/'>Home</a>")))
 
   (GET "/admin" request
-       (friend/authorize #{::admin}
+       (friend/authorize #{::lib/admin}
                          (str "<h1>For administrators</h1>"
                               (display-authentications request)
                               "<p>This page can only be seen by administrators.</p>"
