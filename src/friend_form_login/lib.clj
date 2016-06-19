@@ -16,13 +16,6 @@
                     :password (creds/hash-bcrypt "password")
                     :roles #{::user}}})
 
-(def users {"admin" {:username "admin"
-                    :password (creds/hash-bcrypt "password")
-                    :roles #{::admin}}
-            "dave" {:username "dave"
-                    :password (creds/hash-bcrypt "password")
-                    :roles #{::user}}})
-
 (derive ::admin ::user)
 
 (defn authentications [request]
